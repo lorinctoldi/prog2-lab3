@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add directory="gtest/include" />
 		</Compiler>
+		<Unit filename="elkeszult.h" />
 		<Unit filename="gtest_lite.h" />
 		<Unit filename="komplex.cpp" />
 		<Unit filename="komplex.h" />

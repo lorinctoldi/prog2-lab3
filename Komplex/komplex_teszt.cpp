@@ -13,7 +13,7 @@
 #include <sstream>
 
 #include "gtest_lite.h"
-
+#include "elkeszult.h"
 #include "komplex.h"
 
 int main() {
