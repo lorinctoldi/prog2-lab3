@@ -1,39 +1,28 @@
 # Pelda Makefile a 3. labor megoldasanak forditasara es tesztelesere
 # Solaris (ural2) es Linux ala.
 
-GTEST = ./gtest
-                                # gtest katalogus helye
-ARCH = `uname`-`uname -m`       # architekturahoz tartozo kat. neve
-objs = komplex_teszt.o komplex.o # forditando obj. fajlok
+OBJECTS = komplex_teszt.o komplex.o # forditando obj. fajlok
+HEADERS = gtest_lite.h elkeszult.h komplex.h
+#
 CXX = g++                       # a C++ fordito neve
 #CXX = clang++                  # clang-ot (llvm) is erdemes kiprobalni
 CXXFLAGS = -pedantic -Wall      # C++ kapcsolok: legyen bobeszedu, 
-CXXFLAGS += -Wno-long-long -Wno-variadic-macros
-                                # ... de gtest headerekre ne gerjedjen
+CXXFLAGS += -g 			# debug info 
+
+TARGET	= komplex_teszt
 
 # alapertelmezett cel: tesztek futtatasa
 .PHONY:
-do_test: test
-	./test
+do_test: $(TARGET)
+	./$(TARGET)
 
-# tesztprogram linkelese
-test: $(objs)
-	$(CXX) -L$(GTEST)/$(ARCH) -lgtest_main -lgtest $(objs) -o $@
-
-# tesztprogram forditasahoz kell a gtest include katalogus
-komplex_teszt.o: komplex_teszt.cpp
-	$(CXX) ${LDFLAGS} -I${GTEST}/include $(CPPFLAGS) $(CXXFLAGS) -c komplex_teszt.cpp 
-
-# ujraforditas, ha valtozik az osztaly felepitese
-komplex.o komplex_teszt.o: komplex.h
-
-fapados: fapados_komplex_teszt.o komplex.o komplex.h
-	$(CXX) fapados_komplex_teszt.o komplex.o -o $@
+$(TARGET): $(OBJECTS) $(HEADERS)	# nem feltétlen figg mindenki minden headertol
+	$(CXX) $(OBJECTS) -o $@
 
 # takaritas igeny szerint
 .PHONY:
 clean:
-	rm -f *.o test fapados *~
+	rm -f *.o $(TARGET) *~ *.cbp *.vcxproj*
 
 # tar igeny szerint
 .PHONY:
