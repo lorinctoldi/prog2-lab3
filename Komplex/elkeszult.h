@@ -6,7 +6,7 @@
  */
 
 /// Készültségi fok beállítása
-#define ELKESZULT 0
+#define ELKESZULT 6
 /**
  *ELKESZULT értéke - feladatok:
  * 0. Csak az előre elkészített tagfüggvények (konstruktorok, getRe, abs) működnek.

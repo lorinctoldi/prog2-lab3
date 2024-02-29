@@ -58,3 +58,53 @@ Komplex& Komplex::operator+=(double rhs_d) {
 // ------------------------ Eddig elkészítettük -------------------------
 // TODO: A hiányzó tag- és globális függvények itt következnek
 
+// 1-es feladat
+double Komplex::getRe() const {
+    return re;
+}
+
+double Komplex::getIm() const {
+    return im;
+}
+// 1-es feladat vége
+
+// 2-es feladat
+void Komplex::setRe(double re) {
+    this->re = re;
+}
+
+void Komplex::setIm(double im) {
+    this->im = im;
+}
+// 2-es feladat vége
+
+// 3-as feladat
+bool Komplex::operator==(const Komplex& rhs_k) const {
+    return (re == rhs_k.re) && (im == rhs_k.im);
+}
+// 3-as feladat vége
+
+// 4-es feladat
+Komplex Komplex::operator+(const Komplex& rhs_k) const {
+    return Komplex(re + rhs_k.re, im + rhs_k.im);
+}
+
+Komplex Komplex::operator+(double rhs_d) const {
+    return Komplex(re + rhs_d, im);
+}
+// 4-es feladat vége
+
+// 5-ös feladat
+Komplex operator+(double lhs_d, const Komplex& rhs_k) {
+    return Komplex(lhs_d + rhs_k.getRe(), rhs_k.getIm());
+}
+// 5-ös feladat vége
+
+// 6-os feladat
+Komplex& Komplex::operator+=(const Komplex& rhs_k) {
+    re += rhs_k.re;
+    im += rhs_k.im;
+    return *this;
+}
+
+// 6-os feladat vége
